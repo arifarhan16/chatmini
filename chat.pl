@@ -4,11 +4,10 @@ sub get{
 }
 sub menu{
     print '
-******
-Author : Cy#b3rN0b
-Team : IndoSec 
-******
-';
+    .:CHATMINI:. 
+    Crafted By Arikun - IndoSec
+    ___________________________
+    ';
 }
 menux:
 menu;
@@ -25,7 +24,7 @@ if($cmd eq 1){
         system('clear');
         goto menux;
     }   
-}   elsif($cmd eq "2")  {
+    }   elsif($cmd eq "2")  {
         print 'Server : http://';
         $server=<STDIN>;
         chomp $server;
@@ -42,25 +41,25 @@ if($cmd eq 1){
             close(FH);
             system('curl -X POST -F x=@log http://'.$server.'/server.php');
             com:
-                get;
-                print "-> ";
-                my $command=<STDIN>;
-                chomp $command;
-                if($command eq "r"){
+            get;
+            print "-> ";
+            my $command=<STDIN>;
+            chomp $command;
+            if($command eq "r"){
+                system('clear');
+                goto com;
+                }   elsif(!$command)    {
                     system('clear');
                     goto com;
-                }   elsif(!$command)    {
+                    }   elsif($command) {
+                        open(FH, '>', "log");
+                        print FH "$name";
+                        print FH " : ";
+                        print FH "$command\n";
+                        close(FH);
+                        system('curl -X POST -F x=@log http://'.$server.'/server.php');
                         system('clear');
                         goto com;
-                    }   elsif($command) {
-                            open(FH, '>', "log");
-                            print FH "$name";
-                            print FH " : ";
-                            print FH "$command\n";
-                            close(FH);
-                            system('curl -X POST -F x=@log http://'.$server.'/server.php');
-                            system('clear');
-                            goto com;
-                        }
-                   }
-        }
+                    }
+                }
+            }
